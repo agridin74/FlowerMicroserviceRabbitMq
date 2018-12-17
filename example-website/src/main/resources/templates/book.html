@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>www.flybrownfield.com</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta charset="utf-8"/>
+    <link href="/css/main.css" th:href="@{/css/main.css}" rel="stylesheet" media="screen"/>
+</head>
+<body>
+	<nav>
+       <ul>
+          <li>Цветы </li>
+          <li><a th:href="@{/}">Search</a></li>
+           <li><a th:href="@{/search-booking}">CheckIn</a></li>
+        </ul>
+    </nav> 
+  <div align="center" class="form-style-8">
+	<h2>Selected Delivery</h2>
+ <form action="#" th:action="@{/confirm}" th:object="${uidata}" method="post">
+ 	<h3>
+ 	<table>
+ 
+     <tbody>
+		<tr>
+	   	 <td>
+		   	 <span th:text="${uidata.selectedDelivery.deliveryNumber}"></span>
+		   	 <input type="hidden" th:field="${uidata.selectedDelivery.deliveryNumber}"/>
+	   	 </td>
+	  	 <td>
+	  	 	<span th:text="${uidata.selectedDelivery.origin}"></span>
+	  		 <input type="hidden" th:field="${uidata.selectedDelivery.origin}"/>
+	  	 </td>
+	  	 <td>
+	  	 	<span th:text="${uidata.selectedDelivery.destination}"></span>
+	  	 	<input type="hidden" th:field="${uidata.selectedDelivery.destination}"/>
+	  	 </td>
+	  	 <td>
+	  		 <span th:text="${uidata.selectedDelivery.deliveryDate}"></span>
+	  	 	<input type="hidden" th:field="${uidata.selectedDelivery.deliveryDate}"/>
+	  	 </td>
+	  	 <td>
+	  	 	<span th:text="${uidata.selectedDelivery.flowers.flower}"></span>
+	  	 	<input type="hidden" th:field="${uidata.selectedDelivery.flowers.flower}"/>
+	  	 </td>
+	 	</tr>
+	 	 </tbody>
+	</table>
+	</h3>
+   	<table>
+    	  <tr> <td>First Name </td><td> <input type="text" th:field="${uidata.customer.firstName}" /> </td></tr>	     
+	      <tr> <td>Last Name </td><td><input type="text" th:field="${uidata.customer.lastName}" /></td></tr>	
+	      <tr> <td>Gender</td> 
+	      	<td>
+	      		<select th:field="${uidata.customer.gender}" >
+					  <option value="Male">Male</option>
+					  <option value="Female">Female</option>
+				</select>
+	      	</td>
+	      </tr>	
+	      <tr> <td><input type="submit" value="Confirm" /> </td></tr>	
+	   </table>
+    </form>
+  </div>
+</body>
+</html>

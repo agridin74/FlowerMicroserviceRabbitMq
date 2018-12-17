@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>www.flowers.com</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta charset="utf-8"/>
+    <link href="/css/main.css" th:href="@{/css/main.css}" rel="stylesheet" media="screen"/>
+</head>
+<body>
+	<nav>
+       <ul>
+          <li>Flower </li>
+          <li><a th:href="@{/}">Search</a></li>
+           <li><a th:href="@{/search-booking}">CheckIn</a></li>
+        </ul>
+    </nav> 
+  <div align="center" class="form-style-8">
+	<h2>Booking Search</h2>
+    <form action="#" th:action="@{/search-booking-get}" th:object="${uidata}" method="post">
+    	<table>
+    	  <tr> <td>Booking Reference</td><td> <input type="text" th:field="*{bookingid}" /> </td></tr>	     
+	      <tr> <td></td><td><input type="submit" value="Search" /> </td></tr>	
+	   </table>
+	    <div th:if="${uidata.selectedDelivery != null}">
+	  <h3>
+	   	<table>
+		<tr>
+		  	 <td th:text="${uidata.selectedDelivery.deliveryNumber}"/>
+		  	 <td th:text="${uidata.selectedDelivery.origin}"/>
+		  	 <td th:text="${uidata.selectedDelivery.destination}"/>
+		  	 <td th:text="${uidata.selectedDelivery.deliveryDate}"/>
+		 
+		  	 <td th:text="${uidata.customer.firstName}"/>
+		  	 <td th:text="${uidata.customer.lastName}"/>
+
+	 		 <td>
+ 	 		 <a th:href="@{/checkin/{deliveryNumber}/{origin}/{destination}/{deliveryDate}/{flower}/{firstName}/{lastName}/{gender}/{bookingid}(
+ 	 		 					deliveryNumber=${uidata.selectedDelivery.deliveryNumber},
+ 	 		 					origin=${uidata.selectedDelivery.origin},
+ 	 		 					destination=${uidata.selectedDelivery.destination},
+ 	 		 					deliveryDate=${uidata.selectedDelivery.deliveryDate},
+ 	 		 					flower=${uidata.selectedDelivery.flowers.flower},
+ 	 		 					firstName=${uidata.customer.firstName},
+ 	 		 					lastName=${uidata.customer.lastName},
+ 	 		 					gender=${uidata.customer.gender},
+ 	 		 					bookingid=${uidata.bookingid}
+ 	 		 					)}">CheckIn</a>
+ 	 		 </td>
+		</tr>
+	</table>
+	</h3>
+	   </div>
+   </form>
+      </div>
+</body>
+</html>

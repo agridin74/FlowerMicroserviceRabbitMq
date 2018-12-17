@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>www.flower.com</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta charset="utf-8"/>
+    <link href="/css/main.css" th:href="@{/css/main.css}" rel="stylesheet" media="screen"/>
+<script>
+    function rowClicked(value) {
+    	alert(value);
+        //location.href = "/search?param=" + value;
+    	location.href = "/search;
+    }
+</script>    
+</head>
+<body>
+	<nav>
+       <ul>
+          <li>Flowers </li>
+          <li><a th:href="@{/}">Search</a></li>
+           <li><a th:href="@{/search-booking}">CheckIn</a></li>
+        </ul>
+    </nav> 
+  <div align="center" class="form-style-8">
+	<h2>Available Flowers</h2>
+		
+	
+	<table>
+	<thead>
+        <tr>
+            <th>#</th>
+            <th>Delivery</th>
+            <th>From</th>
+            <th>To</th>
+            <th>Date</th>
+            <th>Flower</th>
+        </tr>
+    </thead>
+	
+	 <tbody>
+		<tr th:each="delivery : ${uidata.deliverys}" >
+		  	 <td th:text="${delivery.id}"/>
+		  	 <td th:text="${delivery.deliveryNumber}"/>
+		  	 <td th:text="${delivery.origin}"/>
+		  	 <td th:text="${delivery.destination}"/>
+		  	 <td th:text="${delivery.deliveryDate}"/>
+		  	 <td th:text="${delivery.flowers.flower}"/>
+ 	 		 <td>
+ 	 		 <a th:href="@{/book/{deliveryNumber}/{origin}/{destination}/{deliveryDate}/{flower}(
+ 	 		 					deliveryNumber=${delivery.deliveryNumber},
+ 	 		 					origin=${delivery.origin},
+ 	 		 					destination=${delivery.destination},
+ 	 		 					deliveryDate=${delivery.deliveryDate},
+ 	 		 					flower=${delivery.flowers.flower},
+ 	 		 					)}">Book</a>
+ 	 		 </td>
+		</tr>
+		 </tbody>
+	</table>
+    
+    </div>
+</body>
+</html>
